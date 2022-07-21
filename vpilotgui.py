@@ -1,0 +1,496 @@
+from re import M
+from turtle import width
+from deepgtav.messages import Start, Stop, Dataset, frame2numpy, Scenario
+from deepgtav.client import Client
+import argparse
+
+
+# Creates a new connection to DeepGTAV using the specified ip and port. 
+# If desired, a dataset path and compression level can be set to store in memory all the data received in a gziped pickle file.
+parser = argparse.ArgumentParser(description=None)
+parser.add_argument('-l', '--host', default='localhost', help='The IP where DeepGTAV is running')
+parser.add_argument('-p', '--port', default=8000, help='The port where DeepGTAV is running')
+parser.add_argument('-d', '--dataset_path', default='dataset.pz', help='Place to store the dataset')
+args = parser.parse_args()
+client = Client(ip=args.host, port=args.port, datasetPath=args.dataset_path, compressionLevel=9)
+
+import tkinter as tk
+root = tk.Tk()
+
+
+
+#title:
+root.title("GTAV OPENPILOT¡!")
+
+##############################################################
+#Window Size and Screen Position
+window_width = 500
+window_height = 800
+
+# get the screen dimension
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+# find the center point
+center_x = int(screen_width/2 - window_width / 2)
+center_y = int(screen_height/2 - window_height / 2)
+
+# set the position of the window to the center of the screen
+root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
+##############################################################
+
+##############################################################
+#Configuring index and weight of rows and colums
+root.rowconfigure(0, weight=1)
+root.rowconfigure(1, weight=1)
+root.rowconfigure(2, weight=1)
+root.rowconfigure(3, weight=1)
+root.rowconfigure(4, weight=1)
+root.rowconfigure(5, weight=1)
+root.rowconfigure(6, weight=1)
+root.rowconfigure(7, weight=1)
+root.rowconfigure(8, weight=1)
+root.rowconfigure(9, weight=1)
+root.rowconfigure(10, weight=1)
+root.rowconfigure(11, weight=1)
+root.rowconfigure(12, weight=1)
+root.rowconfigure(13, weight=1)
+root.rowconfigure(14, weight=1)
+root.rowconfigure(15, weight=1)
+root.rowconfigure(16, weight=1)
+root.rowconfigure(17, weight=1)
+root.rowconfigure(18, weight=1)
+root.rowconfigure(19, weight=1)
+root.rowconfigure(20, weight=1)
+root.rowconfigure(21, weight=1)
+root.rowconfigure(22, weight=1)
+root.rowconfigure(23, weight=1)
+root.rowconfigure(24, weight=1)
+root.rowconfigure(25, weight=1)
+
+
+
+root.columnconfigure(0, weight=1)
+root.columnconfigure(1, weight=1)
+root.columnconfigure(2, weight=0)
+root.columnconfigure(3, weight=0)
+root.columnconfigure(4, weight=0)
+root.columnconfigure(5, weight=0)
+root.columnconfigure(6, weight=0)
+root.columnconfigure(7, weight=0)
+root.columnconfigure(8, weight=0)
+root.columnconfigure(9, weight=1)
+
+##############################################################
+#Lables
+scene = tk.Label(root, text="Scenario:",font=("Courier", 30))
+scene.grid(column=5, row=0)
+
+datas = tk.Label(root, text="Dataset:", font=("Courier", 30))
+datas.grid(column=5, row=6)
+
+###############################################################
+#Scenarios#####################################################
+###############################################################
+
+###############################################################
+#Location(ints)
+locLabel = tk.Label(root, text="Location:", font=("Courier"))
+locLabel.grid(column=4, row=1)
+
+locEntry1 = tk.Entry(root, width=5,font=("Courier"))#width of the text entry box
+locEntry2 = tk.Entry(root, width=5,font=("Courier"))
+
+locEntry1.grid(column=5, row=1)
+locEntry2.grid(column=6, row=1)
+
+##############################################################
+#Time(ints)
+timeLabel1 = tk.Label(root, text="Time:", font=("Courier"))
+timeLabel1.grid(column=4, row=2)
+
+timeLabel2 = tk.Label(root, text=":", font=("Courier"))
+timeLabel2.grid(column=6, row=2)
+
+timedef1 = tk.StringVar()
+timedef2 = tk.StringVar()
+
+timedef1.set("12")
+timedef2.set("00")
+
+
+timeEntry1 = tk.Entry(root, textvariable=timedef1, width=2,font=("Courier"))#width of the text entry box
+timeEntry2 = tk.Entry(root, textvariable=timedef2, width=2,font=("Courier"))
+
+timeEntry1.grid(column=5, row=2)
+timeEntry2.grid(column=7, row=2)
+
+
+
+##############################################################
+#Weather Label & Dropdown Menu#
+
+weatherlabel = tk.Label(root, text="Weather:", font=("Courier"))
+weatherlabel.grid(column=4, row=3)
+
+weatherchoice = tk.StringVar(root)
+weatherchoice.set("SUNNY") #makes the default choice in the dropdown menu
+
+wDropdown = tk.OptionMenu(root, weatherchoice, "SUNNY", "RAINY", "HAZY", "EXTRASUNNY")
+wDropdown.grid(column=5, row=3)
+
+##############################################################
+#Vehicle(str)
+vlabel = tk.Label(root, text="Vehicle:", font=("Courier"))
+vlabel.grid(column=4, row=4)
+
+voltic = tk.StringVar(root)
+voltic.set("Voltic")
+ventry = tk.Entry(root, textvariable=voltic, width=6,font=("Courier"))
+ventry.grid(column=5, row=4)
+
+###############################################################
+#Driving Mode(ints)
+dmlabel = tk.Label(root, text="Driving Mode:", font=("Courier"))
+dmlabel.grid(column=4, row=5)
+
+dmneg1 = tk.StringVar(root)
+dmneg1.set(-1)
+
+dmentry1 = tk.Entry(root, textvariable=dmneg1, width=2,font=("Courier"))
+dmentry2 = tk.Entry(root, width=4,font=("Courier"))
+
+dmentry1.grid(column=5, row=5)
+dmentry2.grid(column=6, row=5)
+
+###############################################################
+#DATASETS######################################################
+###############################################################
+
+###############################################################
+#Rate(int)
+rlabel = tk.Label(root, text="Rate:", font=("Courier"))
+rlabel.grid(column=4, row=7)
+
+rentry = tk.Entry(root, width=6,font=("Courier"))
+rentry.grid(column=5, row=7)
+
+###############################################################
+#Frame(ints)
+framelabel = tk.Label(root, text="Frame:", font=("Courier"))
+framelabel.grid(column=4, row=8)
+
+frameentry1 = tk.Entry(root, width=6,font=("Courier"))
+frameentry2 = tk.Entry(root, width=6,font=("Courier"))
+
+frameentry1.grid(column=5, row=8)
+frameentry2.grid(column=6, row=8)
+
+###############################################################
+#Vehicles(bool)
+
+vehiclelabel = tk.Label(root, text="Vehicles:", font=("Courier"))
+vehiclelabel.grid(column=4, row=9)
+
+vehicleschoice = tk.StringVar(root)
+vehicleschoice.set("True") #makes the default choice in the dropdown menu
+
+vehiclesBool = tk.OptionMenu(root, vehicleschoice, "True", "False")
+vehiclesBool.grid(column=5, row=9)
+
+###############################################################
+#Peds(bool)
+
+pedslabel = tk.Label(root, text="Peds:", font=("Courier"))
+pedslabel.grid(column=4, row=10)
+
+pedschoice = tk.StringVar(root)
+pedschoice.set("True") #makes the default choice in the dropdown menu
+
+pedsBool = tk.OptionMenu(root, pedschoice, "True", "False")
+pedsBool.grid(column=5, row=10)
+
+###############################################################
+#TrafficSigns(bool)
+
+trafficslabel = tk.Label(root, text="Traffic Signs:", font=("Courier"))
+trafficslabel.grid(column=4, row=11)
+
+trafficschoice = tk.StringVar(root)
+trafficschoice.set("True") #makes the default choice in the dropdown menu
+
+trafficsBool = tk.OptionMenu(root, trafficschoice, "True", "False")
+trafficsBool.grid(column=5, row=11)
+
+###############################################################
+#Direction(ints)
+directionlabel = tk.Label(root, text="Direction:", font=("Courier"))
+directionlabel.grid(column=4, row=12)
+
+directionentry1 = tk.Entry(root, width=6,font=("Courier"))
+directionentry2 = tk.Entry(root, width=6,font=("Courier"))
+directionentry3 = tk.Entry(root, width=6,font=("Courier"))
+
+directionentry1.grid(column=5, row=12)
+directionentry2.grid(column=6, row=12)
+directionentry3.grid(column=7, row=12)
+
+###############################################################
+#Reward([id, p1, p2])
+rewardlabel = tk.Label(root, text="Reward:", font=("Courier"))
+rewardlabel.grid(column=4, row=13)
+
+rewardentry1 = tk.Entry(root, width=6,font=("Courier"))
+rewardentry2 = tk.Entry(root, width=6,font=("Courier"))
+rewardentry3 = tk.Entry(root, width=6,font=("Courier"))
+
+rewardentry1.grid(column=5, row=13)
+rewardentry2.grid(column=6, row=13)
+rewardentry3.grid(column=7, row=13)
+
+###############################################################
+#Throttle(bool)
+
+throttlelabel = tk.Label(root, text="Throttle:", font=("Courier"))
+throttlelabel.grid(column=4, row=14)
+
+throttlechoice = tk.StringVar(root)
+throttlechoice.set("True") #makes the default choice in the dropdown menu
+
+throttleBool = tk.OptionMenu(root, throttlechoice, "True", "False")
+throttleBool.grid(column=5, row=14)
+
+###############################################################
+#Brake(bool)
+
+brakelabel = tk.Label(root, text="Brake:", font=("Courier"))
+brakelabel.grid(column=4, row=15)
+
+brakechoice = tk.StringVar(root)
+brakechoice.set("True") #makes the default choice in the dropdown menu
+
+brakeBool = tk.OptionMenu(root, brakechoice, "True", "False")
+brakeBool.grid(column=5, row=15)
+
+###############################################################
+#Steering(bool)
+
+steeringlabel = tk.Label(root, text="Steering:", font=("Courier"))
+steeringlabel.grid(column=4, row=16)
+
+steeringchoice = tk.StringVar(root)
+steeringchoice.set("True") #makes the default choice in the dropdown menu
+
+steeringBool = tk.OptionMenu(root, steeringchoice, "True", "False")
+steeringBool.grid(column=5, row=16)
+
+###############################################################
+#Speed(bool)
+
+speedlabel = tk.Label(root, text="Speed:", font=("Courier"))
+speedlabel.grid(column=4, row=17)
+
+speedchoice = tk.StringVar(root)
+speedchoice.set("True") #makes the default choice in the dropdown menu
+
+speedBool = tk.OptionMenu(root, speedchoice, "True", "False")
+speedBool.grid(column=5, row=17)
+
+
+###############################################################
+#Yaw Rate(bool)
+
+yawlabel = tk.Label(root, text="Yaw Rate:", font=("Courier"))
+yawlabel.grid(column=4, row=18)
+
+yawchoice = tk.StringVar(root)
+yawchoice.set("True") #makes the default choice in the dropdown menu
+
+yawBool = tk.OptionMenu(root, yawchoice, "True", "False")
+yawBool.grid(column=5, row=18)
+
+
+###############################################################
+#Driving Mode(bool)
+
+#dm2 because dm is already for the driving mode in scenario.
+dm2label = tk.Label(root, text="Driving Mode:", font=("Courier"))
+dm2label.grid(column=4, row=19)
+
+dm2choice = tk.StringVar(root)
+dm2choice.set("True") #makes the default choice in the dropdown menu
+
+dm2Bool = tk.OptionMenu(root, dm2choice, "True", "False")
+dm2Bool.grid(column=5, row=19)
+
+
+
+###############################################################
+#Location(bool)
+
+#loc2 because loc is already for the location in scenario.
+
+loc2label = tk.Label(root, text="Location:", font=("Courier"))
+loc2label.grid(column=4, row=20)
+
+loc2choice = tk.StringVar(root)
+loc2choice.set("True") #makes the default choice in the dropdown menu
+
+loc2Bool = tk.OptionMenu(root, loc2choice, "True", "False")
+loc2Bool.grid(column=5, row=20)
+
+
+###############################################################
+#Speed(bool)
+#time2 because time is already for the time in scenario.
+
+
+time2label = tk.Label(root, text="Time:", font=("Courier"))
+time2label.grid(column=4, row=21)
+
+time2choice = tk.StringVar(root)
+time2choice.set("True") #makes the default choice in the dropdown menu
+
+time2Bool = tk.OptionMenu(root, time2choice, "True", "False")
+time2Bool.grid(column=5, row=21)
+
+
+###############################################################
+#Start and Stop functions 
+def strtobool(TorF: str) -> bool:
+    if TorF == "True":
+        return True
+    else:
+        return False
+
+def printingdicts():
+
+    if int(dmentry1.get()) == -1:
+        drivingmode = -1
+    else:
+        drivingmode = [int(dmentry1.get()), int(dmentry2.get())]
+    
+    scenario_dict = {
+            "location" : [int(locEntry1.get()), int(locEntry2.get())],
+            "time" : [int(timeEntry1.get()), int(timeEntry2.get())],
+            "weather" : weatherchoice.get(),
+            "vehicle" : ventry.get(),
+            "drivingmode" : drivingmode
+        }
+        
+    dataset_dict = {
+        "rate" : int(rentry.get()),
+        "frame" : [int(frameentry1.get()), int(frameentry2.get())],
+        "vehicles" : strtobool(vehicleschoice.get()),
+        "peds" : strtobool(pedschoice.get()),
+        "trafficsigns" : strtobool(trafficschoice.get()),
+        "direction" : [int(directionentry1.get()), int(directionentry2.get()), int(directionentry3.get())],
+        "reward" : [int(rewardentry1.get()), int(rewardentry2.get()), int(rewardentry3.get())],
+        "throttle" : strtobool(throttlechoice.get()),
+        "brake" : strtobool(brakechoice.get()),
+        "steering" : strtobool(steeringchoice.get()),
+        "speed" : strtobool(speedchoice.get()),
+        "yawrate" : strtobool(yawchoice.get()),
+        "drivingmode" : strtobool(dm2choice.get()),
+        "location" : strtobool(loc2choice.get()),
+        "time" : strtobool(time2choice.get())
+    }   
+
+    for each in scenario_dict:
+        print(scenario_dict[each])
+    
+    for each in dataset_dict:
+        print(dataset_dict[each])
+
+    return None
+
+def startCommand():
+    
+    if int(dmentry1.get()) == -1:
+        drivingmode = -1
+    else:
+        drivingmode = [int(dmentry1.get()), int(dmentry2.get())]
+
+    scenario_dict = {
+        "location" : [int(locEntry1.get()), int(locEntry2.get())],
+        "time" : [int(timeEntry1.get()), int(timeEntry2.get())],
+        "weather" : weatherchoice.get(),
+        "vehicle" : ventry.get(),
+        "drivingmode" : drivingmode
+    }
+
+    dataset_dict = {
+        "rate" : int(rentry.get()),
+        "frame" : [int(frameentry1.get()), int(frameentry2.get())],
+        "vehicles" : strtobool(vehicleschoice.get()),
+        "peds" : strtobool(pedschoice.get()),
+        "trafficsigns" : strtobool(trafficschoice.get()),
+        "direction" : [int(directionentry1.get()), int(directionentry2.get()), int(directionentry3.get())],
+        "reward" : [int(rewardentry1.get()), int(rewardentry2.get()), int(rewardentry3.get())],
+        "throttle" : strtobool(throttlechoice.get()),
+        "brake" : strtobool(brakechoice.get()),
+        "steering" : strtobool(steeringchoice.get()),
+        "speed" : strtobool(speedchoice.get()),
+        "yawrate" : strtobool(yawchoice.get()),
+        "drivingmode" : strtobool(dm2choice.get()),
+        "location" : strtobool(loc2choice.get()),
+        "time" : strtobool(time2choice.get())
+    }    
+    
+    
+    # Configures the information that we want DeepGTAV to generate and send to us. 
+
+    # See deepgtav/messages.py to see what options are supported
+    dataset = Dataset(rate=30, 
+        frame=[320,160], 
+        throttle=True, 
+        brake=True, 
+        steering=True, 
+        vehicles=True, 
+        peds=True, 
+        reward=[15.0, 0.0], 
+        direction=None, 
+        speed=True, 
+        yawRate=True, 
+        location=True, 
+        time=True,
+        )
+    # Send the Start request to DeepGTAV.
+    scenario = Scenario(
+        location=scenario_dict["location"],
+        time=scenario_dict["time"],
+        weather=scenario_dict["weather"],
+        vehicle=scenario_dict["vehicle"], 
+        drivingmode=scenario_dict["drivingmode"])
+        
+    # Driving style is set to normal, with a speed of 15.0 mph. All other scenario options are random.
+    client.sendMessage(Start(scenario=scenario))
+
+
+def stopCommand(): 
+
+    client.sendMessage(Stop())
+
+#onclosing tk window
+#client.close()
+
+
+
+###############################################################
+#Start & Stop Buttons
+startButton = tk.Button(root, text = "Start", command = printingdicts)
+startButton.grid(column=4,row=25)
+
+stopButton = tk.Button(root, text = "Stop", command = stopCommand)
+stopButton.grid(column=6,row=25)
+##############################################################
+
+
+
+root.mainloop() #needed to keep window open
+
+
+
+
+
+
