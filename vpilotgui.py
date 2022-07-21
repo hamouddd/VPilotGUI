@@ -1,4 +1,3 @@
-from re import M
 from deepgtav.messages import Start, Stop, Dataset, frame2numpy, Scenario
 from deepgtav.client import Client
 import argparse
