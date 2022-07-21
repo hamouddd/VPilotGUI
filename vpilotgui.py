@@ -169,10 +169,10 @@ dmentry2.grid(column=6, row=5)
 ###############################################################
 
 ###############################################################
-#Rate(int)
+#Rate(int()
 rlabel = tk.Label(root, text="Rate:", font=("Courier"))
 rlabel.grid(column=4, row=7)
-
+#default value = 20
 rentry = tk.Entry(root, width=6,font=("Courier"))
 rentry.grid(column=5, row=7)
 
@@ -180,7 +180,7 @@ rentry.grid(column=5, row=7)
 #Frame(ints)
 framelabel = tk.Label(root, text="Frame:", font=("Courier"))
 framelabel.grid(column=4, row=8)
-
+#default value = [874, 1164]
 frameentry1 = tk.Entry(root, width=6,font=("Courier"))
 frameentry2 = tk.Entry(root, width=6,font=("Courier"))
 
@@ -465,7 +465,7 @@ def startCommand():
         time=scenario_dict["time"],
         weather=scenario_dict["weather"],
         vehicle=scenario_dict["vehicle"], 
-        drivingmode=scenario_dict["drivingmode"])
+        drivingMode=scenario_dict["drivingmode"])
         
     # Driving style is set to normal, with a speed of 15.0 mph. All other scenario options are random.
     client.sendMessage(Start(scenario=scenario))
