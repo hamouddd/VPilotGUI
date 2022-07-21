@@ -1,3 +1,4 @@
+from re import M
 from deepgtav.messages import Start, Stop, Dataset, frame2numpy, Scenario
 from deepgtav.client import Client
 import argparse
@@ -443,7 +444,19 @@ def startCommand():
         rate=dataset_dict["rate"], 
         frame=dataset_dict["frame"], 
         vehicles=dataset_dict["vehicles"], 
-        peds=dataset_dict["peds"])
+        peds=dataset_dict["peds"], 
+        trafficSigns=dataset_dict["trafficsigns"], 
+        direction=dataset_dict["direction"], 
+        reward=dataset_dict["reward"], 
+        throttle=dataset_dict["throttle"], 
+        brake=dataset_dict["brake"], 
+        steering=dataset_dict["steering"], 
+        speed=dataset_dict["speed"], 
+        yawRate=dataset_dict["yawrate"], 
+        drivingMode=dataset_dict["drivingmode"], 
+        location=dataset_dict["location"], 
+        time=dataset_dict["time"]
+        )
     # Send the Start request to DeepGTAV.
     scenario = Scenario(
         location=scenario_dict["location"],
@@ -477,6 +490,7 @@ stopButton.grid(column=6,row=25)
 
 
 root.mainloop() #needed to keep window open
+
 
 
 
