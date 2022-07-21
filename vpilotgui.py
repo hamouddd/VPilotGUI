@@ -98,9 +98,12 @@ locLabel.grid(column=4, row=1)
 
 locEntry1 = tk.Entry(root, width=5,font=("Courier"))#width of the text entry box
 locEntry2 = tk.Entry(root, width=5,font=("Courier"))
+locEntry3 = tk.Entry(root, width=5,font=("Courier"))
 
 locEntry1.grid(column=5, row=1)
 locEntry2.grid(column=6, row=1)
+locEntry3.grid(column=7, row=1)
+
 
 ##############################################################
 #Time(ints)
@@ -369,7 +372,7 @@ def printingdicts():
         drivingmode = [int(dmentry1.get()), int(dmentry2.get())]
     
     scenario_dict = {
-            "location" : [int(locEntry1.get()), int(locEntry2.get())],
+            "location" : [int(locEntry1.get()), int(locEntry2.get()), int(locEntry3.get())],
             "time" : [int(timeEntry1.get()), int(timeEntry2.get())],
             "weather" : weatherchoice.get(),
             "vehicle" : ventry.get(),
@@ -410,7 +413,7 @@ def startCommand():
         drivingmode = [int(dmentry1.get()), int(dmentry2.get())]
 
     scenario_dict = {
-        "location" : [int(locEntry1.get()), int(locEntry2.get())],
+        "location" : [int(locEntry1.get()), int(locEntry2.get()), int(locEntry3.get())],
         "time" : [int(timeEntry1.get()), int(timeEntry2.get())],
         "weather" : weatherchoice.get(),
         "vehicle" : ventry.get(),
