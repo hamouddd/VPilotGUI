@@ -1,5 +1,3 @@
-from re import M
-from turtle import width
 from deepgtav.messages import Start, Stop, Dataset, frame2numpy, Scenario
 from deepgtav.client import Client
 import argparse
@@ -441,20 +439,11 @@ def startCommand():
     # Configures the information that we want DeepGTAV to generate and send to us. 
 
     # See deepgtav/messages.py to see what options are supported
-    dataset = Dataset(rate=30, 
-        frame=[320,160], 
-        throttle=True, 
-        brake=True, 
-        steering=True, 
-        vehicles=True, 
-        peds=True, 
-        reward=[15.0, 0.0], 
-        direction=None, 
-        speed=True, 
-        yawRate=True, 
-        location=True, 
-        time=True,
-        )
+    dataset = Dataset(
+        rate=dataset_dict["rate"], 
+        frame=dataset_dict["frame"], 
+        vehicles=dataset_dict["vehicles"], 
+        peds=dataset_dict["peds"])
     # Send the Start request to DeepGTAV.
     scenario = Scenario(
         location=scenario_dict["location"],
