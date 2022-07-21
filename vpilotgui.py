@@ -479,7 +479,7 @@ def stopCommand():
 
 ###############################################################
 #Start & Stop Buttons
-startButton = tk.Button(root, text = "Start", command = printingdicts)
+startButton = tk.Button(root, text = "Start", command = startCommand)
 startButton.grid(column=4,row=25)
 
 stopButton = tk.Button(root, text = "Stop", command = stopCommand)
