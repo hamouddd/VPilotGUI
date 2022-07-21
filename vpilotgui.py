@@ -10,7 +10,7 @@ parser.add_argument('-l', '--host', default='localhost', help='The IP where Deep
 parser.add_argument('-p', '--port', default=8000, help='The port where DeepGTAV is running')
 parser.add_argument('-d', '--dataset_path', default='dataset.pz', help='Place to store the dataset')
 args = parser.parse_args()
-client = Client(ip=args.host, port=args.port, datasetPath=args.dataset_path, compressionLevel=9)
+client = Client(ip=args.host, port=args.port)
 
 import tkinter as tk
 root = tk.Tk()
