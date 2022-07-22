@@ -410,10 +410,10 @@ def startCommand():
     if int(dmentry1.get()) == -1:
         drivingmode = -1
     else:
-        drivingmode = [int(dmentry1.get()), int(dmentry2.get())]
+        drivingmode = [float(dmentry1.get()), float(dmentry2.get())]
 
     scenario_dict = {
-        "location" : [int(locEntry1.get()), int(locEntry2.get()), int(locEntry3.get())],
+        "location" : [float(locEntry1.get()), float(locEntry2.get()), float(locEntry3.get())],
         "time" : [int(timeEntry1.get()), int(timeEntry2.get())],
         "weather" : weatherchoice.get(),
         "vehicle" : ventry.get(),
@@ -426,7 +426,7 @@ def startCommand():
         "vehicles" : strtobool(vehicleschoice.get()),
         "peds" : strtobool(pedschoice.get()),
         "trafficsigns" : strtobool(trafficschoice.get()),
-        "direction" : [int(directionentry1.get()), int(directionentry2.get()), int(directionentry3.get())],
+        "direction" : [float(directionentry1.get()), float(directionentry2.get()), float(directionentry3.get())],
         "reward" : [int(rewardentry1.get()), int(rewardentry2.get()), int(rewardentry3.get())],
         "throttle" : strtobool(throttlechoice.get()),
         "brake" : strtobool(brakechoice.get()),
