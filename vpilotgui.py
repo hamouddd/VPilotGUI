@@ -93,12 +93,23 @@ datas.grid(column=5, row=6)
 
 ###############################################################
 #Location(floats)
+
 locLabel = tk.Label(root, text="Location:", font=("Courier"))
 locLabel.grid(column=4, row=1)
 
-locEntry1 = tk.Entry(root, width=5,font=("Courier"))#width of the text entry box
-locEntry2 = tk.Entry(root, width=5,font=("Courier"))
-locEntry3 = tk.Entry(root, width=5,font=("Courier"))
+locdefault1 = tk.StringVar()
+locdefault2 = tk.StringVar()
+locdefault3 = tk.StringVar()
+
+#location defaults =[-2573.13916015625, 3292.256103515625, 13.241103172302246]
+locdefault1.set("-2573.13916015625")
+locdefault2.set("3292.256103515625")
+locdefault3.set("13.241103172302246")
+
+
+locEntry1 = tk.Entry(root, width=5,font=("Courier"), textvariable=locdefault1)#width of the text entry box
+locEntry2 = tk.Entry(root, width=5,font=("Courier"), textvariable=locdefault2)
+locEntry3 = tk.Entry(root, width=5,font=("Courier"), textvariable=locdefault3)
 
 locEntry1.grid(column=5, row=1)
 locEntry2.grid(column=6, row=1)
@@ -418,7 +429,7 @@ def printingdicts():
     if intify(dmentry1.get()) == -1:
         drivingmode = -1
     else:
-        drivingmode = intify_list([(dmentry1.get()), (dmentry2.get())])
+        drivingmode = floatify_list([(dmentry1.get()), (dmentry2.get())])
 
     scenario_dict = {
         "location" : floatify_list([(locEntry1.get()), (locEntry2.get()), (locEntry3.get())]),
