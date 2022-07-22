@@ -470,7 +470,7 @@ def startCommand():
     if intify(dmentry1.get()) == -1:
         drivingmode = -1
     else:
-        drivingmode = intify_list([(dmentry1.get()), (dmentry2.get())])
+        drivingmode = floatify_list([(dmentry1.get()), (dmentry2.get())])
 
     scenario_dict = {
         "location" : floatify_list([(locEntry1.get()), (locEntry2.get()), (locEntry3.get())]),
