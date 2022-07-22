@@ -1,4 +1,3 @@
-from cgitb import text
 from deepgtav.messages import Start, Stop, Dataset, frame2numpy, Scenario
 from deepgtav.client import Client
 import argparse
@@ -476,7 +475,9 @@ def startCommand():
         time=scenario_dict["time"],
         weather=scenario_dict["weather"],
         vehicle=scenario_dict["vehicle"], 
-        drivingMode=scenario_dict["drivingmode"])
+        drivingMode=scenario_dict["drivingmode"]
+        )
+
         
     # Driving style is set to normal, with a speed of 15.0 mph. All other scenario options are random.
     client.sendMessage(Start(scenario=scenario))
@@ -486,8 +487,10 @@ def stopCommand():
 
     client.sendMessage(Stop())
 
-#onclosing tk window
-#client.close()
+def onclosing(): 
+        client.close()
+        root.destroy()
+    
 
 
 
@@ -501,7 +504,8 @@ stopButton.grid(column=6,row=25)
 ##############################################################
 
 
-
+root.protocol("WM_DELETE_WINDOW", onclosing)
+root.protocol()
 root.mainloop() #needed to keep window open
 
 
