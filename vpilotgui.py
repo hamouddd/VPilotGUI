@@ -1,3 +1,4 @@
+from cgitb import text
 from deepgtav.messages import Start, Stop, Dataset, frame2numpy, Scenario
 from deepgtav.client import Client
 import argparse
@@ -145,9 +146,9 @@ wDropdown.grid(column=5, row=3)
 vlabel = tk.Label(root, text="Vehicle:", font=("Courier"))
 vlabel.grid(column=4, row=4)
 
-voltic = tk.StringVar(root)
-voltic.set("Voltic")
-ventry = tk.Entry(root, textvariable=voltic, width=6,font=("Courier"))
+defaultvehicle = tk.StringVar(root)
+defaultvehicle.set("blista")
+ventry = tk.Entry(root, textvariable=defaultvehicle, width=6,font=("Courier"))
 ventry.grid(column=5, row=4)
 
 ###############################################################
@@ -172,17 +173,27 @@ dmentry2.grid(column=6, row=5)
 #Rate(int()
 rlabel = tk.Label(root, text="Rate:", font=("Courier"))
 rlabel.grid(column=4, row=7)
+
+ratedefault = tk.StringVar()
+ratedefault.set("20")
 #default value = 20
-rentry = tk.Entry(root, width=6,font=("Courier"))
+rentry = tk.Entry(root, width=6,font=("Courier"), textvariable=ratedefault)
 rentry.grid(column=5, row=7)
 
 ###############################################################
 #Frame(ints)
 framelabel = tk.Label(root, text="Frame:", font=("Courier"))
 framelabel.grid(column=4, row=8)
-#default value = [874, 1164]
-frameentry1 = tk.Entry(root, width=6,font=("Courier"))
-frameentry2 = tk.Entry(root, width=6,font=("Courier"))
+
+framedefault1 = tk.StringVar()
+framedefault1.set("1164")
+
+framedefault2 = tk.StringVar()
+framedefault2.set("874")
+
+
+frameentry1 = tk.Entry(root, width=6,font=("Courier"), textvariable=framedefault1)
+frameentry2 = tk.Entry(root, width=6,font=("Courier"), textvariable=framedefault2)
 
 frameentry1.grid(column=5, row=8)
 frameentry2.grid(column=6, row=8)
