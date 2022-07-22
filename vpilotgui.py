@@ -92,7 +92,7 @@ datas.grid(column=5, row=6)
 ###############################################################
 
 ###############################################################
-#Location(ints)
+#Location(floats)
 locLabel = tk.Label(root, text="Location:", font=("Courier"))
 locLabel.grid(column=4, row=1)
 
@@ -204,9 +204,9 @@ vehiclelabel = tk.Label(root, text="Vehicles:", font=("Courier"))
 vehiclelabel.grid(column=4, row=9)
 
 vehicleschoice = tk.StringVar(root)
-vehicleschoice.set("True") #makes the default choice in the dropdown menu
+vehicleschoice.set("None") #makes the default choice in the dropdown menu
 
-vehiclesBool = tk.OptionMenu(root, vehicleschoice, "True", "False")
+vehiclesBool = tk.OptionMenu(root, vehicleschoice, "None", "True", "False")
 vehiclesBool.grid(column=5, row=9)
 
 ###############################################################
@@ -216,9 +216,9 @@ pedslabel = tk.Label(root, text="Peds:", font=("Courier"))
 pedslabel.grid(column=4, row=10)
 
 pedschoice = tk.StringVar(root)
-pedschoice.set("True") #makes the default choice in the dropdown menu
+pedschoice.set("None") #makes the default choice in the dropdown menu
 
-pedsBool = tk.OptionMenu(root, pedschoice, "True", "False")
+pedsBool = tk.OptionMenu(root, pedschoice, "None", "True", "False")
 pedsBool.grid(column=5, row=10)
 
 ###############################################################
@@ -228,13 +228,13 @@ trafficslabel = tk.Label(root, text="Traffic Signs:", font=("Courier"))
 trafficslabel.grid(column=4, row=11)
 
 trafficschoice = tk.StringVar(root)
-trafficschoice.set("True") #makes the default choice in the dropdown menu
+trafficschoice.set("None") #makes the default choice in the dropdown menu
 
-trafficsBool = tk.OptionMenu(root, trafficschoice, "True", "False")
+trafficsBool = tk.OptionMenu(root, trafficschoice, "None", "True", "False")
 trafficsBool.grid(column=5, row=11)
 
 ###############################################################
-#Direction(ints)
+#Direction(floats)
 directionlabel = tk.Label(root, text="Direction:", font=("Courier"))
 directionlabel.grid(column=4, row=12)
 
@@ -247,7 +247,7 @@ directionentry2.grid(column=6, row=12)
 directionentry3.grid(column=7, row=12)
 
 ###############################################################
-#Reward([id, p1, p2])
+#Reward(ints: [id, p1, p2])
 rewardlabel = tk.Label(root, text="Reward:", font=("Courier"))
 rewardlabel.grid(column=4, row=13)
 
@@ -266,9 +266,9 @@ throttlelabel = tk.Label(root, text="Throttle:", font=("Courier"))
 throttlelabel.grid(column=4, row=14)
 
 throttlechoice = tk.StringVar(root)
-throttlechoice.set("True") #makes the default choice in the dropdown menu
+throttlechoice.set("None") #makes the default choice in the dropdown menu
 
-throttleBool = tk.OptionMenu(root, throttlechoice, "True", "False")
+throttleBool = tk.OptionMenu(root, throttlechoice, "None", "True", "False")
 throttleBool.grid(column=5, row=14)
 
 ###############################################################
@@ -278,9 +278,9 @@ brakelabel = tk.Label(root, text="Brake:", font=("Courier"))
 brakelabel.grid(column=4, row=15)
 
 brakechoice = tk.StringVar(root)
-brakechoice.set("True") #makes the default choice in the dropdown menu
+brakechoice.set("None") #makes the default choice in the dropdown menu
 
-brakeBool = tk.OptionMenu(root, brakechoice, "True", "False")
+brakeBool = tk.OptionMenu(root, brakechoice, "None", "True", "False")
 brakeBool.grid(column=5, row=15)
 
 ###############################################################
@@ -290,9 +290,9 @@ steeringlabel = tk.Label(root, text="Steering:", font=("Courier"))
 steeringlabel.grid(column=4, row=16)
 
 steeringchoice = tk.StringVar(root)
-steeringchoice.set("True") #makes the default choice in the dropdown menu
+steeringchoice.set("None") #makes the default choice in the dropdown menu
 
-steeringBool = tk.OptionMenu(root, steeringchoice, "True", "False")
+steeringBool = tk.OptionMenu(root, steeringchoice, "None", "True", "False")
 steeringBool.grid(column=5, row=16)
 
 ###############################################################
@@ -302,9 +302,9 @@ speedlabel = tk.Label(root, text="Speed:", font=("Courier"))
 speedlabel.grid(column=4, row=17)
 
 speedchoice = tk.StringVar(root)
-speedchoice.set("True") #makes the default choice in the dropdown menu
+speedchoice.set("None") #makes the default choice in the dropdown menu
 
-speedBool = tk.OptionMenu(root, speedchoice, "True", "False")
+speedBool = tk.OptionMenu(root, speedchoice, "None", "True", "False")
 speedBool.grid(column=5, row=17)
 
 
@@ -315,9 +315,9 @@ yawlabel = tk.Label(root, text="Yaw Rate:", font=("Courier"))
 yawlabel.grid(column=4, row=18)
 
 yawchoice = tk.StringVar(root)
-yawchoice.set("True") #makes the default choice in the dropdown menu
+yawchoice.set("None") #makes the default choice in the dropdown menu
 
-yawBool = tk.OptionMenu(root, yawchoice, "True", "False")
+yawBool = tk.OptionMenu(root, yawchoice, "None", "True", "False")
 yawBool.grid(column=5, row=18)
 
 
@@ -329,9 +329,9 @@ dm2label = tk.Label(root, text="Driving Mode:", font=("Courier"))
 dm2label.grid(column=4, row=19)
 
 dm2choice = tk.StringVar(root)
-dm2choice.set("True") #makes the default choice in the dropdown menu
+dm2choice.set("None") #makes the default choice in the dropdown menu
 
-dm2Bool = tk.OptionMenu(root, dm2choice, "True", "False")
+dm2Bool = tk.OptionMenu(root, dm2choice, "None", "True", "False")
 dm2Bool.grid(column=5, row=19)
 
 
@@ -345,9 +345,9 @@ loc2label = tk.Label(root, text="Location:", font=("Courier"))
 loc2label.grid(column=4, row=20)
 
 loc2choice = tk.StringVar(root)
-loc2choice.set("True") #makes the default choice in the dropdown menu
+loc2choice.set("None") #makes the default choice in the dropdown menu
 
-loc2Bool = tk.OptionMenu(root, loc2choice, "True", "False")
+loc2Bool = tk.OptionMenu(root, loc2choice, "None", "True", "False")
 loc2Bool.grid(column=5, row=20)
 
 
@@ -360,9 +360,9 @@ time2label = tk.Label(root, text="Time:", font=("Courier"))
 time2label.grid(column=4, row=21)
 
 time2choice = tk.StringVar(root)
-time2choice.set("True") #makes the default choice in the dropdown menu
+time2choice.set("None") #makes the default choice in the dropdown menu
 
-time2Bool = tk.OptionMenu(root, time2choice, "True", "False")
+time2Bool = tk.OptionMenu(root, time2choice, "None", "True", "False")
 time2Bool.grid(column=5, row=21)
 
 
@@ -371,32 +371,71 @@ time2Bool.grid(column=5, row=21)
 def strtobool(TorF: str) -> bool:
     if TorF == "True":
         return True
-    else:
+    elif TorF == "False":
         return False
+    else:
+        return None
+
+def intify(inputparam : str):
+    if inputparam == "":
+        return None
+        
+    return int(inputparam) 
+
+def floatify(inputparam: str): 
+    if inputparam == "":
+        return None
+
+    return float(inputparam)
+
+def intify_list(inputparam: list): 
+    
+    for value in inputparam:
+        if intify(value) == None:
+            return None
+    intified = []
+    
+    for value in inputparam:
+        intified.append(intify(value))
+
+    return intified
+
+def floatify_list(inputparam: list): 
+    
+    for value in inputparam:
+        if floatify(value) == None:
+            return None
+    floatified = []
+    
+    for value in inputparam:
+        floatified.append(floatify(value))
+
+    return floatified
+
 
 def printingdicts():
 
-    if int(dmentry1.get()) == -1:
+    if intify(dmentry1.get()) == -1:
         drivingmode = -1
     else:
-        drivingmode = [int(dmentry1.get()), int(dmentry2.get())]
-    
+        drivingmode = intify_list([(dmentry1.get()), (dmentry2.get())])
+
     scenario_dict = {
-            "location" : [int(locEntry1.get()), int(locEntry2.get()), int(locEntry3.get())],
-            "time" : [int(timeEntry1.get()), int(timeEntry2.get())],
-            "weather" : weatherchoice.get(),
-            "vehicle" : ventry.get(),
-            "drivingmode" : drivingmode
-        }
-        
+        "location" : floatify_list([(locEntry1.get()), (locEntry2.get()), (locEntry3.get())]),
+        "time" : intify_list([(timeEntry1.get()), (timeEntry2.get())]),
+        "weather" : weatherchoice.get(),
+        "vehicle" : ventry.get(),
+        "drivingmode" : drivingmode
+    }
+
     dataset_dict = {
-        "rate" : int(rentry.get()),
-        "frame" : [int(frameentry1.get()), int(frameentry2.get())],
+        "rate" : intify(rentry.get()),
+        "frame" : intify_list([(frameentry1.get()), (frameentry2.get())]),
         "vehicles" : strtobool(vehicleschoice.get()),
         "peds" : strtobool(pedschoice.get()),
         "trafficsigns" : strtobool(trafficschoice.get()),
-        "direction" : [int(directionentry1.get()), int(directionentry2.get()), int(directionentry3.get())],
-        "reward" : [int(rewardentry1.get()), int(rewardentry2.get()), int(rewardentry3.get())],
+        "direction" : floatify_list([(directionentry1.get()), (directionentry2.get()), (directionentry3.get())]),
+        "reward" : intify_list([(rewardentry1.get()), (rewardentry2.get()), (rewardentry3.get())]),
         "throttle" : strtobool(throttlechoice.get()),
         "brake" : strtobool(brakechoice.get()),
         "steering" : strtobool(steeringchoice.get()),
@@ -405,7 +444,7 @@ def printingdicts():
         "drivingmode" : strtobool(dm2choice.get()),
         "location" : strtobool(loc2choice.get()),
         "time" : strtobool(time2choice.get())
-    }   
+    }    
 
     for each in scenario_dict:
         print(scenario_dict[each])
@@ -417,27 +456,27 @@ def printingdicts():
 
 def startCommand():
     
-    if int(dmentry1.get()) == -1:
+    if intify(dmentry1.get()) == -1:
         drivingmode = -1
     else:
-        drivingmode = [float(dmentry1.get()), float(dmentry2.get())]
+        drivingmode = intify_list([(dmentry1.get()), (dmentry2.get())])
 
     scenario_dict = {
-        "location" : [float(locEntry1.get()), float(locEntry2.get()), float(locEntry3.get())],
-        "time" : [int(timeEntry1.get()), int(timeEntry2.get())],
+        "location" : floatify_list([(locEntry1.get()), (locEntry2.get()), (locEntry3.get())]),
+        "time" : intify_list([(timeEntry1.get()), (timeEntry2.get())]),
         "weather" : weatherchoice.get(),
         "vehicle" : ventry.get(),
         "drivingmode" : drivingmode
     }
 
     dataset_dict = {
-        "rate" : int(rentry.get()),
-        "frame" : [int(frameentry1.get()), int(frameentry2.get())],
+        "rate" : intify(rentry.get()),
+        "frame" : intify_list([(frameentry1.get()), (frameentry2.get())]),
         "vehicles" : strtobool(vehicleschoice.get()),
         "peds" : strtobool(pedschoice.get()),
         "trafficsigns" : strtobool(trafficschoice.get()),
-        "direction" : [float(directionentry1.get()), float(directionentry2.get()), float(directionentry3.get())],
-        "reward" : [int(rewardentry1.get()), int(rewardentry2.get()), int(rewardentry3.get())],
+        "direction" : floatify_list([(directionentry1.get()), (directionentry2.get()), (directionentry3.get())]),
+        "reward" : intify_list([(rewardentry1.get()), (rewardentry2.get()), (rewardentry3.get())]),
         "throttle" : strtobool(throttlechoice.get()),
         "brake" : strtobool(brakechoice.get()),
         "steering" : strtobool(steeringchoice.get()),
@@ -447,7 +486,6 @@ def startCommand():
         "location" : strtobool(loc2choice.get()),
         "time" : strtobool(time2choice.get())
     }    
-    
     
     # Configures the information that we want DeepGTAV to generate and send to us. 
 
@@ -496,7 +534,7 @@ def onclosing():
 
 ###############################################################
 #Start & Stop Buttons
-startButton = tk.Button(root, text = "Start", command = startCommand)
+startButton = tk.Button(root, text = "Start", command = printingdicts)
 startButton.grid(column=4,row=25)
 
 stopButton = tk.Button(root, text = "Stop", command = stopCommand)
